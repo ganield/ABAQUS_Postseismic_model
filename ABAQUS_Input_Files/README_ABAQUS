@@ -1,0 +1,7 @@
+In this directory we provide the ABAQUS input files that have been used in the benchmarking exercises detailed in the main paper.
+
+ABAQUS is a commercial software that must be purchased in order to run these files, full details can be found at: https://www.3ds.com/products-services/simulia/products/abaqus/. We use version 2018 in this study.
+
+The input files have been created using a combination of the graphical user interface and python scripting. All the main elements of the model, as described by the keywords, are detailed in the main text of the paper.
+
+The input files can be run by opening the graphical interface, importing the model and creating a job to run, or using the command line by executing the command "abaqus job=EARTHQUAKE input=dip_30_reverse"

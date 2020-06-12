@@ -1,0 +1,43 @@
+In this directory we provide the VISCO1D input files and earth model files that have been used in the benchmarking exercises detailed in the main paper. We provide a brief explanation of the files and how to run them.
+
+__________________________________________________________________
+VISCO1D Software:
+The VISCO1D software is freely available to download from the USGS at following webpage:
+
+https://www.usgs.gov/software/visco1d
+
+The download includes a manual, examples and tutorials, and the theory behind VISCO1D can be found in:
+Pollitz, F. F.: Gravitational viscoelastic postseismic relaxation on a layered spherical Earth, Journal of Geophysical Research: Solid Earth, 102, 17921-17941, 1997.
+
+For a full explanation of running the VISCO1D software please see the manual and tutorial documents.
+__________________________________________________________________
+
+Each input file relates to a specific fault geometry case study as detailed in the main paper. Lines 1-5 contain a header, and geometric information about the fault, its length, strike, dip, rake, and the time steps of the model run. 
+Row 3 contains the time step information - the first number is the time of the earthquake, and the total deformation is calculated between the times t1 and t2 (the second and third number on this line). So to obtain a timeseries of deformation this file would need to be run several times with a different time t2, depending on the required output. 
+The rest of the input file then contains the desired location of the results. Output is calculated along a transect perpendicular to the fault strike.
+
+The input files are run in conjunction with either a Maxwell or Burgers rheology, as detailed in the VISCO1D_Earth_Models directory within this repository. 
+
+In brief, the gravitational code is run using the following programs, where the earth model file is called "earth.model" and the input file is strainx.inTHRUST.$time. The outputs are given in strainA.outTHRUSTg. For further information, the reader is directed to the VISCO1D manual.
+
+
+__________________________________________________________________
+__________________________________________________________________
+nice ./decay4m << ! > /dev/null
+2 2000
+!
+nice ./vsphm << ! > /dev/null
+0.
+!
+nice ./decay << ! > /dev/null
+2 2000
+!
+nice ./vtordep << ! > /dev/null
+0.
+!
+nice ./strainA < inputs/strainx.inTHRUST.$time > /dev/null
+mv strainA.out strainA.outTHRUSTg
+__________________________________________________________________
+__________________________________________________________________
+
+
